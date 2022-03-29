@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/lookUpFragment">
+
+    <fragment
+        android:id="@+id/lookUpFragment"
+        android:name="com.cristianboicu.codingexerciseweather.ui.LookUpFragment"
+        android:label="fragment_look_up"
+        tools:layout="@layout/fragment_look_up" />
+</navigation>
