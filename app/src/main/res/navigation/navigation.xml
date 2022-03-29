@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/lookUpFragment"
         android:name="com.cristianboicu.codingexerciseweather.ui.lookup.LookUpFragment"
-        android:label="fragment_look_up"
+        android:label="Weather"
         tools:layout="@layout/fragment_look_up">
         <action
             android:id="@+id/action_lookUpFragment_to_resultsFragment"
@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/resultsFragment"
         android:name="com.cristianboicu.codingexerciseweather.ui.result.ResultsFragment"
-        android:label="ResultsFragment"
+        android:label="Results"
         tools:layout="@layout/fragment_results" >
         <action
             android:id="@+id/action_resultsFragment_to_detailsFragment"
@@ -26,7 +26,7 @@
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.cristianboicu.codingexerciseweather.ui.details.DetailsFragment"
-        android:label="DetailsFragment" >
+        android:label="Details" >
         <argument
             android:name="id"
             app:argType="integer" />
