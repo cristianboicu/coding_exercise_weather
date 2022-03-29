@@ -2,7 +2,10 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-android'
+    id 'kotlin-kapt'
     id 'androidx.navigation.safeargs'
+    id 'dagger.hilt.android.plugin'
+
 }
 
 android {
@@ -37,6 +40,16 @@ android {
 }
 
 dependencies {
+    //Dagger.Hilt
+    implementation("com.google.dagger:hilt-android:$version_dagger_hilt")
+    kapt("com.google.dagger:hilt-android-compiler:$version_dagger_hilt")
+
+    //Room
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation "androidx.room:room-runtime:$version_room"
+    kapt "androidx.room:room-compiler:$version_room"
+    implementation "androidx.room:room-ktx:$version_room"
+
     // Navigation
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")

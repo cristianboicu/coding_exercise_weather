@@ -1,29 +1,39 @@
 package com.cristianboicu.codingexerciseweather.ui.lookup
 
-import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.cristianboicu.codingexerciseweather.data.remote.WeatherService
+import com.cristianboicu.codingexerciseweather.data.repository.DefaultRepository
+import com.cristianboicu.codingexerciseweather.util.Event
+import com.cristianboicu.codingexerciseweather.util.Status
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class LookUpViewModel : ViewModel() {
-    private val retrofitService = WeatherService.getInstance()
+@HiltViewModel
+class LookUpViewModel @Inject constructor(private val defaultRepository: DefaultRepository) :
+    ViewModel() {
 
-    fun fetchData(city: String) {
-        Log.d("LookUpViewModel", city)
-        viewModelScope.launch {
-            val response = retrofitService.getForecast(city)
-            if (response.isSuccessful) {
-                response.body()?.let {
-                    for (item in it.list) {
-                        Log.d("LookUpViewModel", "${item.weather.toString()} + \n")
-                        Log.d("LookUpViewModel", "${item.main} - \n")
+    val navigateToResults = MutableLiveData<Event<Unit>>()
 
-                    }
-//                    Log.d("LookUpViewModel", it.list.toString())
-                }
+    private val status = MutableLiveData<Status>()
 
+    private fun checkUserInput(city: String): Boolean {
+        return !(city.isEmpty() || city.isBlank())
+    }
+
+    fun fetchForecast(city: String) {
+        if (checkUserInput(city)) {
+            viewModelScope.launch {
+                status.value = defaultRepository.refreshData(city)
+                checkStatus(status.value)
             }
+        }
+    }
+
+    private fun checkStatus(status: Status?) {
+        if (status == Status.SUCCESS) {
+            navigateToResults.value = Event(Unit)
         }
     }
 }

@@ -7,10 +7,13 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.cristianboicu.codingexerciseweather.R
 import com.cristianboicu.codingexerciseweather.databinding.FragmentLookUpBinding
+import com.cristianboicu.codingexerciseweather.util.EventObserver
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class LookUpFragment : Fragment() {
 
     private val viewModel: LookUpViewModel by viewModels()
@@ -24,6 +27,12 @@ class LookUpFragment : Fragment() {
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+
+        viewModel.navigateToResults.observe(viewLifecycleOwner, EventObserver {
+            this.findNavController().navigate(
+                LookUpFragmentDirections.actionLookUpFragmentToResultsFragment()
+            )
+        })
 
         return binding.root
     }

@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.cristianboicu.codingexerciseweather.ui.lookup.LookUpViewModel" />
@@ -33,7 +32,7 @@
             android:id="@+id/btn_lookup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="@{()->viewModel.fetchData(etCityName.getText().toString())}"
+            android:onClick="@{()->viewModel.fetchForecast(etCityName.getText().toString())}"
             android:text="@string/lookup"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/et_city_name"

@@ -9,5 +9,14 @@
         android:id="@+id/lookUpFragment"
         android:name="com.cristianboicu.codingexerciseweather.ui.lookup.LookUpFragment"
         android:label="fragment_look_up"
-        tools:layout="@layout/fragment_look_up" />
+        tools:layout="@layout/fragment_look_up">
+        <action
+            android:id="@+id/action_lookUpFragment_to_resultsFragment"
+            app:destination="@id/resultsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resultsFragment"
+        android:name="com.cristianboicu.codingexerciseweather.ui.result.ResultsFragment"
+        android:label="ResultsFragment"
+        tools:layout="@layout/fragment_results" />
 </navigation>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="forecast"
+            type="com.cristianboicu.codingexerciseweather.data.model.Forecast" />
+
+        <variable
+            name="clickListener"
+            type="com.cristianboicu.codingexerciseweather.ui.adapter.ForecastListener" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:onClick="@{() -> clickListener.onClick(forecast)}"
+        android:padding="@dimen/small_value">
+
+        <TextView
+            android:id="@+id/tv_weather"
+            android:layout_width="0dp"
+            android:text="@{forecast.weather}"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tv_temp"
+            android:layout_width="0dp"
+            android:text="20"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/black" />
+
+    </LinearLayout>
+</layout>
