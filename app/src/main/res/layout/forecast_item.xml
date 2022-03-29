@@ -5,7 +5,7 @@
 
         <variable
             name="forecast"
-            type="com.cristianboicu.codingexerciseweather.data.model.Forecast" />
+            type="com.cristianboicu.codingexerciseweather.data.model.DomainForecast" />
 
         <variable
             name="clickListener"
@@ -15,6 +15,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/forecast_item_bg"
+        android:layout_margin="@dimen/medium_value"
         android:orientation="horizontal"
         android:onClick="@{() -> clickListener.onClick(forecast)}"
         android:padding="@dimen/small_value">
@@ -30,7 +32,7 @@
         <TextView
             android:id="@+id/tv_temp"
             android:layout_width="0dp"
-            android:text="20"
+            android:text="@{forecast.temp}"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textColor="@color/black" />

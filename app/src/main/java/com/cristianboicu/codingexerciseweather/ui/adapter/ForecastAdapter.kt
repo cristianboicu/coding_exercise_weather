@@ -5,11 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.cristianboicu.codingexerciseweather.data.model.DomainForecast
 import com.cristianboicu.codingexerciseweather.data.model.Forecast
 import com.cristianboicu.codingexerciseweather.databinding.ForecastItemBinding
 
 class ForecastAdapter(private val clickListener: ForecastListener) :
-    ListAdapter<Forecast, ForecastViewHolder>(ForecastDiffCallback()) {
+    ListAdapter<DomainForecast, ForecastViewHolder>(ForecastDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ForecastViewHolder {
         return ForecastViewHolder.from(parent)
     }
@@ -24,7 +25,7 @@ class ForecastViewHolder private constructor(private val binding: ForecastItemBi
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(
-        item: Forecast,
+        item: DomainForecast,
         clickListener: ForecastListener,
     ) {
         binding.forecast = item
@@ -41,16 +42,16 @@ class ForecastViewHolder private constructor(private val binding: ForecastItemBi
     }
 }
 
-class ForecastDiffCallback : DiffUtil.ItemCallback<Forecast>() {
-    override fun areItemsTheSame(oldItem: Forecast, newItem: Forecast): Boolean {
+class ForecastDiffCallback : DiffUtil.ItemCallback<DomainForecast>() {
+    override fun areItemsTheSame(oldItem: DomainForecast, newItem: DomainForecast): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: Forecast, newItem: Forecast): Boolean {
+    override fun areContentsTheSame(oldItem: DomainForecast, newItem: DomainForecast): Boolean {
         return oldItem == newItem
     }
 }
 
 class ForecastListener(val clickListener: (forecastId: Int) -> Unit) {
-    fun onClick(forecast: Forecast) = clickListener(forecast.id)
+    fun onClick(forecast: DomainForecast) = clickListener(forecast.id)
 }
