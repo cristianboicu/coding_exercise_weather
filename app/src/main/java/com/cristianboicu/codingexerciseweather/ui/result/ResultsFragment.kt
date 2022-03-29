@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.cristianboicu.codingexerciseweather.R
 import com.cristianboicu.codingexerciseweather.databinding.FragmentResultsBinding
 import com.cristianboicu.codingexerciseweather.ui.adapter.ForecastAdapter
 import com.cristianboicu.codingexerciseweather.ui.adapter.ForecastListener
+import com.cristianboicu.codingexerciseweather.util.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -39,6 +41,13 @@ class ResultsFragment : Fragment() {
                 adapter.submitList(it)
             }
         }
+
+        viewModel.navigateToDetails.observe(viewLifecycleOwner, EventObserver {
+            this.findNavController().navigate(
+                ResultsFragmentDirections.actionResultsFragmentToDetailsFragment(it)
+            )
+        })
+
 
         return binding.root
     }

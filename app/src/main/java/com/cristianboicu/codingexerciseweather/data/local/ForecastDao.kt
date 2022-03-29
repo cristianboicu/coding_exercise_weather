@@ -16,4 +16,7 @@ interface ForecastDao {
 
     @Query("delete from forecast")
     suspend fun deleteData()
+
+    @Query("select * from forecast where id=:id")
+    suspend fun getForecastById(id: Int): Forecast
 }
